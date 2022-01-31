@@ -4,7 +4,7 @@ import time
 import threading
 from weather_info import Weather
 
-TOKEN = "5115237864:AAHGSChjEBtps3pBTcHvgNCcrJJ3ww2BPfs"
+TOKEN = ""
 is_continue = True
 start_threading = None
 stop_threading = None
