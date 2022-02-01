@@ -20,18 +20,17 @@ class Weather:
                     "appid":self.appid
                         }
     
-    def get_hourly(self, interval=6):
-        self.exclude = ["minutely", "daily"]
-        
-        res = requests.get("https://api.openweathermap.org/data/2.5/onecall", params=self.params)
-        data = res.json()["hourly"][interval - 1]
-        
-        return data
-        
+    def call_api(self):
+        return requests.get("https://api.openweathermap.org/data/2.5/onecall", params=self.params)
+    
+    def get_now(self):
+        self.exclude = ["minutely","hourly", "daily"]   
+        return self.call_api().json()["current"]
 
-weather = Weather(lat=37.807343, lon=126.713508)    
-print(weather.get_hourly()["temp"])
+    def get_data(self, data="hourly"):
+        exclude = ["minutely", "hourly", "current", "current", "daily"]  
+        exclude.remove(data)
+        self.exclude = exclude
         
-        
-        
+        return self.call_api().json()
         
